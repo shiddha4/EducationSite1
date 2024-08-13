@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function validateForm() {
+  let x = document.forms["code"]["codeEnter"].value;
+  if (x != "39154") {
+    alert("Incorrect code! Redirecting you back to checkin");
+    window.location.replace("/checkin");
+
+    return false;
+  }
+}
+</script>
+</head>
+<body>
+
+<h2>Are you sure you want to check in twice?</h2>
+<h4><a href="/checkin">Go Back</a></h4>
+
+<form name="code" action="/checkintwice/{{id}}" onsubmit="return validateForm()" method="POST">
+  Enter Code: <input type="password" name="codeEnter">
+    {%csrf_token%}
+  <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>
